@@ -77,14 +77,27 @@ class _secondState extends State<second> {
                                             var url = Uri.parse(
                                                 'https://pdfile7.000webhostapp.com/third/deletedata3.php?id=${cu.id}');
                                             var response = await http.get(url);
-                                            print(
-                                                "response = ${response.body}");
-                                            print(
-                                                "status code = ${response.statusCode}");
+                                            print("response = ${response.body}");
+                                            print("status code = ${response.statusCode}");
                                           },
                                           icon: Icon(Icons.delete)),
-                                      subtitle: Text(
-                                          "name: ${cu.name}, MobileNo: ${cu.mobile}, add_type: ${cu.addressType}, City: ${cu.longitude}"),
+                                      subtitle: Column(
+                                        children: [
+                                          Text(
+                                              "name: ${cu.name}, MobileNo: ${cu.mobile}, add_type: ${cu.addressType}, City: ${cu.longitude}"),
+                                          ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  fixedSize: Size(120, 30),
+                                                  onPrimary: Colors.purpleAccent,
+                                                  primary: Color(0xff4d4d4d)),
+                                              onPressed: () {},
+                                              child: Text(
+                                                "Update",
+                                                style: TextStyle(
+                                                    fontSize: 15, letterSpacing: 1, color: Colors.white),
+                                              )),
+                                        ],
+                                      ),
                                       title: Text(
                                         "Address : ${cu.id}",
                                         style: TextStyle(
