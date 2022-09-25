@@ -13,7 +13,9 @@ class second extends StatefulWidget {
 
 class _secondState extends State<second> {
   List map = [];
-  customer cu = customer();
+  Color c = Color(0xff4d4d4d);
+
+  // customer cu = customer();
 
   Future viewdata() async {
     var url =
@@ -26,11 +28,17 @@ class _secondState extends State<second> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffd9d9d9),
-      body: RefreshIndicator(
-        onRefresh: () => refresh(),
-        child: SafeArea(
+    return RefreshIndicator(
+      strokeWidth: 2,
+      color: c,
+      backgroundColor: Colors.transparent,
+      onRefresh: () {
+        return refresh();
+        setState(() {});
+      },
+      child: Scaffold(
+        backgroundColor: Color(0xffd9d9d9),
+        body: SafeArea(
           top: true,
           child: Container(
             margin: EdgeInsets.only(right: 6, left: 6),
@@ -103,15 +111,6 @@ class _secondState extends State<second> {
   }
 
   Future refresh() async {
-    await Duration(seconds: 1);
-    return IconButton(
-        onPressed: () async {
-          var url = Uri.parse(
-              'https://pdfile7.000webhostapp.com/third/deletedata3.php?id=${cu.id}');
-          var response = await http.get(url);
-          print("response = ${response.body}");
-          print("status code = ${response.statusCode}");
-        },
-        icon: Icon(Icons.delete));
+    await Duration(seconds: 2);
   }
 }
