@@ -12,12 +12,32 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
-
-  dynamic longitude = "Surat,Gujarat";
-  List<bool> isselect = [true, false, false];
+///
+  String? longitude;
+  List<bool> isselect = [false, false, false];
   List address_type = ["Home", "Office", "Other"];
   String add = "";
+  String city = "Select City";
+  String selsectcity = "";
   Color c = Color(0xff4d4d4d);
+  bool onchang = false;
+  List list = [
+    "Surat,Gujarat",
+    "Valsad,Gujarat",
+    "Bharuch,Gujarat",
+    "Ahmadabad,Gujarat",
+    "Bhavnagar,Gujarat",
+    "Junagadh,Gujarat",
+    "Amreli,Gujarat",
+    "Rajkot,Gujarat"
+  ];
+
+  createmenu() {
+    return list
+        .map<DropdownMenuItem<String>>(
+            (e) => DropdownMenuItem(value: e, child: Text(e)))
+         .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,63 +65,23 @@ class _homeState extends State<home> {
                 SizedBox(
                   height: 10,
                 ),
-                DropdownButton(
-                  value: longitude,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text(
-                        "Surat,Gujarat",
-                      ),
-                      value: "Surat,Gujarat",
+                Ink(
+                  height: 40,
+                  color: Color(0xffe9e9e9),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      hint: Text("$city"),
+                      isExpanded: true,
+                      value: longitude,
+                      iconSize: 30,
+                      items: createmenu(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          longitude = value ?? "";
+                        });
+                      },
                     ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Valsad,Gujarat",
-                      ),
-                      value: "Valsad,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Ahmadabad,Gujarat",
-                      ),
-                      value: "Ahmadabad,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Bhavnagar,Gujarat",
-                      ),
-                      value: "Bhavnagar,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Bharuch,Gujarat",
-                      ),
-                      value: "Bharuch,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Junagadh,Gujarat",
-                      ),
-                      value: "Junagadh,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Amreli,Gujarat",
-                      ),
-                      value: "Amreli,Gujarat",
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Rajkot,Gujarat",
-                      ),
-                      value: "Rajkot,Gujarat",
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      longitude = value;
-                    });
-                  },
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -128,9 +108,7 @@ class _homeState extends State<home> {
                       onPressed: (newIndex) {
                         print(newIndex);
                         setState(() {
-                          for (int index = 0;
-                              index < isselect.length;
-                              index++) {
+                          for (int index = 0; index < isselect.length; index++) {
                             if (index == newIndex) {
                               isselect[index] = true;
                               add = address_type[index];
@@ -213,7 +191,7 @@ class _homeState extends State<home> {
                         primary: Color(0xff4d4d4d)),
                     onPressed: () async {
                       String s1, s2, s3, s4;
-                      s1 = longitude;
+                      s1 = longitude!;
                       s2 = add;
                       s3 = t1.text;
                       s4 = t2.text;
@@ -227,8 +205,10 @@ class _homeState extends State<home> {
 
                       print("statusCode =  ${response.statusCode}");
                       print("response =  ${response.body}");
+
+
                       longitude = "Surat,Gujarat";
-                      isselect = [true,false,false];
+                      isselect = [false, false, false];
                       t1.clear();
                       t2.clear();
                       setState(() {});
