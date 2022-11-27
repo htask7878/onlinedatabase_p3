@@ -12,13 +12,15 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
-///
+
+  ///
   String? longitude;
   List<bool> isselect = [false, false, false];
   List address_type = ["Home", "Office", "Other"];
   String add = "";
   String city = "Select City";
-  String selsectcity = "";
+
+  // String selsectcity = "";
   Color c = Color(0xff4d4d4d);
   bool onchang = false;
   List list = [
@@ -36,7 +38,7 @@ class _homeState extends State<home> {
     return list
         .map<DropdownMenuItem<String>>(
             (e) => DropdownMenuItem(value: e, child: Text(e)))
-         .toList();
+        .toList();
   }
 
   @override
@@ -108,7 +110,9 @@ class _homeState extends State<home> {
                       onPressed: (newIndex) {
                         print(newIndex);
                         setState(() {
-                          for (int index = 0; index < isselect.length; index++) {
+                          for (int index = 0;
+                              index < isselect.length;
+                              index++) {
                             if (index == newIndex) {
                               isselect[index] = true;
                               add = address_type[index];
@@ -186,9 +190,9 @@ class _homeState extends State<home> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        fixedSize: Size(200, 45),
-                        onPrimary: Colors.purpleAccent,
-                        primary: Color(0xff4d4d4d)),
+                        foregroundColor: Colors.purpleAccent,
+                        backgroundColor: Color(0xff4d4d4d),
+                        fixedSize: Size(200, 45)),
                     onPressed: () async {
                       String s1, s2, s3, s4;
                       s1 = longitude!;
@@ -206,7 +210,6 @@ class _homeState extends State<home> {
                       print("statusCode =  ${response.statusCode}");
                       print("response =  ${response.body}");
 
-
                       longitude = "Surat,Gujarat";
                       isselect = [false, false, false];
                       t1.clear();
@@ -223,9 +226,7 @@ class _homeState extends State<home> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        fixedSize: Size(200, 45),
-                        onPrimary: Colors.purpleAccent,
-                        primary: Color(0xff4d4d4d)),
+                        foregroundColor: Colors.purpleAccent, backgroundColor: Color(0xff4d4d4d), fixedSize: Size(200, 45)),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
