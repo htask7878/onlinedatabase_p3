@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:onlinedatabase_p3/customer.dart';
 import 'package:onlinedatabase_p3/update.dart';
+
+import 'customer.dart';
 
 class second extends StatefulWidget {
   const second({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _secondState extends State<second> {
   List map = [];
   Color c = Color(0xff4d4d4d);
 
-  // customer cu = customer();
+  // Customer cu = Customer();
 
   Future viewdata() async {
     var url =
@@ -57,7 +58,7 @@ class _secondState extends State<second> {
                       return Container(
                         child: ListView.builder(
                             itemBuilder: (context, index) {
-                              customer cu = customer.fromJson(map[index]);
+                              Customer cu = Customer.fromJson(map[index]);
                               return Container(
                                 margin: EdgeInsets.only(top: 9, bottom: 9),
                                 decoration: BoxDecoration(
@@ -84,9 +85,7 @@ class _secondState extends State<second> {
                                             "name: ${cu.name}, MobileNo: ${cu.mobile}, add_type: ${cu.addressType}, City: ${cu.longitude}"),
                                         ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                                fixedSize: Size(120, 30),
-                                                onPrimary: Colors.purpleAccent,
-                                                primary: Color(0xff4d4d4d)),
+                                                foregroundColor: Colors.purpleAccent, fixedSize: Size(120, 30), backgroundColor: Color(0xff4d4d4d)),
                                             onPressed: () {
                                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                                                 return update();
@@ -121,9 +120,5 @@ class _secondState extends State<second> {
         ),
       ),
     );
-  }
-
-  Future refresh() async {
-    await Duration(seconds: 2);
   }
 }

@@ -15,14 +15,14 @@ class _homeState extends State<home> {
 
   ///
   String? longitude;
-  List<bool> isselect = [false, false, false];
+  List<bool> isSelect = [false, false, false];
   List address_type = ["Home", "Office", "Other"];
   String add = "";
   String city = "Select City";
 
   // String selsectcity = "";
   Color c = Color(0xff4d4d4d);
-  bool onchang = false;
+
   List list = [
     "Surat,Gujarat",
     "Valsad,Gujarat",
@@ -111,14 +111,14 @@ class _homeState extends State<home> {
                         print(newIndex);
                         setState(() {
                           for (int index = 0;
-                              index < isselect.length;
+                              index < isSelect.length;
                               index++) {
                             if (index == newIndex) {
-                              isselect[index] = true;
+                              isSelect[index] = true;
                               add = address_type[index];
                               print("$add");
                             } else {
-                              isselect[index] = false;
+                              isSelect[index] = false;
                             }
                           }
                         });
@@ -134,7 +134,7 @@ class _homeState extends State<home> {
                             padding: EdgeInsets.symmetric(horizontal: 30),
                             child: Text("Other")),
                       ],
-                      isSelected: isselect),
+                      isSelected: isSelect),
                 ),
                 SizedBox(
                   height: 20,
@@ -211,7 +211,7 @@ class _homeState extends State<home> {
                       print("response =  ${response.body}");
 
                       longitude = "Surat,Gujarat";
-                      isselect = [false, false, false];
+                      isSelect = [false, false, false];
                       t1.clear();
                       t2.clear();
                       setState(() {});

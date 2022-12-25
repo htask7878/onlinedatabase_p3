@@ -1,13 +1,13 @@
-class customer {
+class Customer {
   String? id;
   String? longitude;
   String? addressType;
   String? mobile;
   String? name;
 
-  customer({this.id, this.longitude, this.addressType, this.mobile, this.name});
+  Customer({this.id, this.longitude, this.addressType, this.mobile, this.name});
 
-  customer.fromJson(Map<String, dynamic> json) {
+  Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     longitude = json['longitude'];
     addressType = json['address_type'];

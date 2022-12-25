@@ -9,7 +9,7 @@ class update extends StatefulWidget {
 
 class _updateState extends State<update> {
   dynamic longitude = "Surat,Gujarat";
-  List<bool> isselect = [true, false, false];
+  List<bool> isSelect = [true, false, false];
   List address_type = ["Home", "Office", "Other"];
   String add = "";
   Color c = Color(0xff4d4d4d);
@@ -126,14 +126,14 @@ class _updateState extends State<update> {
                         print(newIndex);
                         setState(() {
                           for (int index = 0;
-                          index < isselect.length;
+                          index < isSelect.length;
                           index++) {
                             if (index == newIndex) {
-                              isselect[index] = true;
+                              isSelect[index] = true;
                               add = address_type[index];
                               print("$add");
                             } else {
-                              isselect[index] = false;
+                              isSelect[index] = false;
                             }
                           }
                         });
@@ -149,7 +149,7 @@ class _updateState extends State<update> {
                             padding: EdgeInsets.symmetric(horizontal: 30),
                             child: Text("Other")),
                       ],
-                      isSelected: isselect),
+                      isSelected: isSelect),
                 ),
                 SizedBox(
                   height: 20,
